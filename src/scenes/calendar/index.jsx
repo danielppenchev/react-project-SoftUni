@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, List, ListItem, ListItemText, Typography, useTheme } from '@mui/material';
 import FullCalendar from '@fullcalendar/react';
-import  { formatDate } from '@fullcalendar/core';
+import { formatDate } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -44,8 +44,21 @@ const Calendar = () => {
                     <Typography variant="h5">Events</Typography>
                     <List>
                         {currentEvents.map((event) => (
-                            <ListItem key={event.id} sx={{ backgroundColor: colors.greenAccent[500], margin: "10px 0", borderRadius: "2px"}}>
-                                <ListItemText primary={event.title} secondary={<Typography>{formatDate(event.start, { year: "numeric", month: "short", day: "numeric" })}</Typography>}
+                            <ListItem
+                                key={event.id}
+                                sx={{
+                                    backgroundColor: colors.greenAccent[500],
+                                    margin: "10px 0",
+                                    borderRadius: "2px"
+                                }}
+                            >
+                                <ListItemText
+                                    primary={event.title}
+                                    secondary={
+                                        <Typography>
+                                            {formatDate(event.start, { year: "numeric", month: "short", day: "numeric" })}
+                                        </Typography>
+                                    }
                                 />
                             </ListItem>
                         ))}
@@ -74,8 +87,8 @@ const Calendar = () => {
                         eventClick={handleEventClick}
                         eventsSet={(events) => setCurrentEvents(events)}
                         initialEvents={[
-                            { id: "1234", title: "All-day event", date: "2022-09-14"},
-                            { id: "2343", title: "Timed event", date: "2022-09-28"}
+                            { id: "1234", title: "All-day event", date: "2022-09-14" },
+                            { id: "2343", title: "Timed event", date: "2022-09-28" }
                         ]}
                     />
                 </Box>
